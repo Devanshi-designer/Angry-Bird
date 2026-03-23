@@ -77,6 +77,10 @@ public class SlingShotHandler : MonoBehaviour
                 {
                     StartCoroutine(SpawnAngryBirdAfterTime());
                 }
+                else
+                {
+                    // Debug.Log("lost");
+                }
             }
         }
     }

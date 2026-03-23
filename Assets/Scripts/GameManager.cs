@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int MaxNumberOfShots = 3;
     [SerializeField] private float _secondsToWaitBeforeDeathCheck = 3f;
     [SerializeField] private GameObject _restartScreenObject;
+    [SerializeField] private GameObject _lostScreenObject;
     [SerializeField] private SlingShotHandler _slingShotHandler;
 
     private int _usedNumberOfShots;
@@ -74,7 +75,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            RestartGame();
+            LostGame();
+            // RestartGame();
         }
     }
 
@@ -97,6 +99,12 @@ public class GameManager : MonoBehaviour
     private void WinGame()
     {
         _restartScreenObject.SetActive(true);
+        _slingShotHandler.enabled = false;
+    }
+
+    public void LostGame()
+    {
+        _lostScreenObject.SetActive(true);
         _slingShotHandler.enabled = false;
     }
 
