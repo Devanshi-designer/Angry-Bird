@@ -154,9 +154,71 @@ MonoBehaviour:
   _rightStartPosition: {fileID: 435579419}
   _centerPosition: {fileID: 196147548}
   _idlePosition: {fileID: 1454020967}
+  _elasticTransform: {fileID: 1452643065}
   _maxDistance: 3.5
   _shotForce: 9
   _timeBetweenBirdRespawns: 2
+  _elasticDivider: 1.2
+  _elaseticCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 16.377481
+      outSlope: 16.377481
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.076324314
+      value: 1.25
+      inSlope: -6.073004
+      outSlope: -6.073004
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.023796186
+    - serializedVersion: 3
+      time: 0.14200969
+      value: 0.90337163
+      inSlope: 1.9340898
+      outSlope: 1.9340898
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.34956673
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2155782
+      value: 1.0236646
+      inSlope: -0.8194254
+      outSlope: -0.8194254
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.06205595
+    - serializedVersion: 3
+      time: 0.24890077
+      value: 1
+      inSlope: -0.030081647
+      outSlope: 0
+      tangentMode: 65
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _slingShotArea: {fileID: 494132729}
   _angryBirdPrefab: {fileID: 1957416108734221888, guid: aac846b4c927441059b647c0b98e524d, type: 3}
   _andryBirdPositionOffset: 0.275
@@ -1871,6 +1933,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5650aedef3d394e65838161f23893ad2, type: 3}
+--- !u!1 &1452643064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1452643065}
+  m_Layer: 0
+  m_Name: ElasticTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1452643065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452643064}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1545427054}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1454020966
 GameObject:
   m_ObjectHideFlags: 0
@@ -2063,6 +2156,7 @@ Transform:
   - {fileID: 435579419}
   - {fileID: 196147548}
   - {fileID: 1454020967}
+  - {fileID: 1452643065}
   m_Father: {fileID: 133525870}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1590368301 stripped

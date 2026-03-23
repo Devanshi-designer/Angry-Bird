@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 public class SlingShotHandler : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class SlingShotHandler : MonoBehaviour
     [SerializeField] private float _maxDistance = 3.5f;
     [SerializeField] private float _shotForce = 5f;
     [SerializeField] private float _timeBetweenBirdRespawns = 2f;
-    
+    [SerializeField] private float _elasticDivider = 1.2f;
+    [SerializeField] private AnimationCurve _elaseticCurve;
 
     [Header("Scripts")]
     [SerializeField] private SlingShotArea _slingShotArea;
@@ -60,7 +62,7 @@ public class SlingShotHandler : MonoBehaviour
             PositionAndRotateAngryBird();
         }
 
-        if (InputManager.WasLeftMouseButtonReleased && _birdOnSlingshot)
+        if (InputManager.WasLeftMouseButtonReleased && _birdOnSlingshot && _clickedWithinArea)
         {
             if (GameManager.instance.HasEnoughShots())
             {
@@ -69,7 +71,7 @@ public class SlingShotHandler : MonoBehaviour
 
                 _spanwedAngryBird.LaunchBird(_direction, _shotForce);
                 GameManager.instance.UseShot();
-                SetLines(_centerPosition.position);
+                AnimateSlingShot();
 
                 if (GameManager.instance.HasEnoughShots())
                 {
@@ -142,7 +144,30 @@ public class SlingShotHandler : MonoBehaviour
 
     #region Animate SlingShot
 
+    private void AnimateSlingShot()
+    {
+        _elasticTransform.position = _leftLineRenderer.GetPosition(0);
 
+        float dist = Vector2.Distance(_elasticTransform.position, _centerPosition.position);
+
+        float time = dist / _elasticDivider;
+
+        _elasticTransform.DOMove(_centerPosition.position, time).SetEase(_elaseticCurve);
+        StartCoroutine(AnimateSlingShotLines(_elasticTransform, time));
+    }
+
+    private IEnumerator AnimateSlingShotLines(Transform trans, float time)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < time)
+        {
+            elapsedTime += Time.deltaTime;
+
+            SetLines(trans.position);
+
+            yield return null;
+        }
+    }
 
     #endregion
 
